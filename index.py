@@ -3,8 +3,10 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression, LogisticRegression
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from os import getcwd
 
-df_dir = 'C:\\Users\\tabea\\PycharmProjects\\Python_Adv_Course_2021\\MachineLearning\\data_frame_machineLearning.json'
+
+df_dir = getcwd() + '\\data_frame_machineLearning.json'
 df = pd.DataFrame(pd.read_json(df_dir))
 df_winners = df[df['winner'] == True]
 
@@ -83,7 +85,7 @@ def remove_outliers(x, y):
 
 # Contacts
 def func4():
-    df_dir = 'C:\\Users\\tabea\\PycharmProjects\\Python_Adv_Course_2021\\MachineLearning\\contacts_machineLearning.json'
+    df_dir = getcwd() + '\\contacts_machineLearning.json'
     df_contacts = pd.read_json(df_dir).dropna()
 
     title = 'Linear Regression for torque vs. angular speed'
