@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression, LogisticRegression
-from sklearn.svm import SVC
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from os import getcwd
