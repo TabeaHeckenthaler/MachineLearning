@@ -23,3 +23,10 @@ def remove_outliers(x, y):
     non_mask = yhat == -1
     x, y = x[non_mask, :], y[non_mask]
     return x, y
+
+
+def print_results(name, test, train):
+    print('----- ' + name + ' ----')
+    print('test coefficient of determination:', test)
+    print('train coefficient of determination:', train)
+    print()

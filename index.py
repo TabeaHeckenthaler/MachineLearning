@@ -13,8 +13,7 @@ df_dir_contacts = os.path.join(os.getcwd(), 'contacts_machineLearning.json')
 df_contacts = pd.read_json(df_dir_contacts).dropna()
 
 
-# Carrier Number vs. Path Length Linear Regression Model
-def carrier_vs_path_length_linear_regression():
+def carrier_vs_path_length_linear_regression() -> None:
     title = 'Linear Regression for successful trials'
     xlabel, ylabel = 'average Carrier Number', 'path length/minimal path length[]'
 
@@ -24,13 +23,11 @@ def carrier_vs_path_length_linear_regression():
     model = LinearRegression()
     model.fit(x_train, y_train)
 
-    print('train coefficient of determination:', model.score(x_train, y_train))
-    print('test coefficient of determination:', model.score(x_test, y_test))
+    print_results('carrier_vs_path_length_linear_regression', model.score(x_test, y_test), model.score(x_train, y_train))
     plot_model(model, x, y, xlabel, ylabel, title)
 
 
-# Velocity vs. Path Length Linear Regression Model
-def velocity_vs_path_length_linear_regression():
+def velocity_vs_path_length_linear_regression() -> None:
     df_winners = df_experiments[df_experiments['winner'] == True]
     title = 'Linear Regression for successful trials'
     xlabel, ylabel = 'velocity', 'path length/minimal path length[]'
@@ -41,13 +38,11 @@ def velocity_vs_path_length_linear_regression():
     model = LinearRegression()
     model.fit(x_train, y_train)
 
-    print('train coefficient of determination:', model.score(x_train, y_train))
-    print('test coefficient of determination:', model.score(x_test, y_test))
+    print_results('velocity_vs_path_length_linear_regression', model.score(x_test, y_test), model.score(x_train, y_train))
     plot_model(model, x, y, xlabel, ylabel, title)
 
 
-# Carrier numbers vs. successful trials  Regression Model
-def carrier_vs_successful_trials_linear_regression():
+def carrier_vs_successful_trials_linear_regression() -> None:
     title = 'LogisticRegression for successful trials'
     xlabel, ylabel = 'average Carrier Number', 'winner'
 
@@ -57,13 +52,15 @@ def carrier_vs_successful_trials_linear_regression():
     model = LogisticRegression()
     model.fit(x_train, y_train)
 
-    print('train coefficient of determination:', model.score(x_train, y_train))
-    print('test coefficient of determination:', model.score(x_test, y_test))
+    print_results('carrier_vs_successful_trials_linear_regression', model.score(x_test, y_test), model.score(x_train, y_train))
     plot_model(model, x, y, xlabel, ylabel, title)
 
 
-# Contacts: Does the rotation match the torque?
-def torque_vs_rotation_at_contact():
+def torque_vs_rotation_at_contact() -> None:
+    """
+    Contacts: Does the rotation match the torque?
+    :return:
+    """
     title = 'Linear Regression for torque vs. angular speed'
     xlabel, ylabel = 'torque', 'theta_dot'
 
@@ -74,8 +71,7 @@ def torque_vs_rotation_at_contact():
     model = LinearRegression()
     model.fit(x_train, y_train)
 
-    print('train coefficient of determination:', model.score(x_train, y_train))
-    print('test coefficient of determination:', model.score(x_test, y_test))
+    print_results('torque_vs_rotation_at_contact', model.score(x_test, y_test), model.score(x_train, y_train))
     plot_model(model, x, y, xlabel, ylabel, title)
 
 
