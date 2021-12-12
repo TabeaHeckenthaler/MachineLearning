@@ -7,10 +7,14 @@ from help_functions import *
 
 
 df_dir_experiments = os.path.join(os.getcwd(), 'data_frame_machineLearning.json')
+df_dir_contacts = os.path.join(os.getcwd(), 'contacts_machineLearning.json')
+if not os.path.isfile(df_dir_experiments) or not os.path.isfile(df_dir_contacts):
+    raise ValueError('Currently the program does not have access to all necessary .json files.'
+                     'Move data_frame_machineLearning.json and contacts_machineLearning.json to your current directory.')
+
 df_experiments = pd.DataFrame(pd.read_json(df_dir_experiments))
 df_winners = df_experiments[df_experiments['winner'] == True]
 
-df_dir_contacts = os.path.join(os.getcwd(), 'contacts_machineLearning.json')
 df_contacts = pd.read_json(df_dir_contacts).dropna()
 
 
@@ -29,7 +33,8 @@ def carrier_vs_path_length_linear_regression() -> None:
     model = LinearRegression()
     model.fit(x_train, y_train)
 
-    print_results('carrier_vs_path_length_linear_regression', model.score(x_test, y_test), model.score(x_train, y_train))
+    print_results('carrier_vs_path_length_linear_regression', model.score(x_test, y_test),
+                  model.score(x_train, y_train))
     plot_model(model, x, y, xlabel, ylabel, title)
 
 
@@ -47,7 +52,8 @@ def velocity_vs_path_length_linear_regression() -> None:
     model = LinearRegression()
     model.fit(x_train, y_train)
 
-    print_results('velocity_vs_path_length_linear_regression', model.score(x_test, y_test), model.score(x_train, y_train))
+    print_results('velocity_vs_path_length_linear_regression', model.score(x_test, y_test),
+                  model.score(x_train, y_train))
     plot_model(model, x, y, xlabel, ylabel, title)
 
 
@@ -65,7 +71,8 @@ def carrier_vs_successful_trials_linear_regression() -> None:
     model = LogisticRegression()
     model.fit(x_train, y_train)
 
-    print_results('carrier_vs_successful_trials_linear_regression', model.score(x_test, y_test), model.score(x_train, y_train))
+    print_results('carrier_vs_successful_trials_linear_regression', model.score(x_test, y_test),
+                  model.score(x_train, y_train))
     plot_model(model, x, y, xlabel, ylabel, title)
 
 
