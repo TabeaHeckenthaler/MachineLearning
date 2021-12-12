@@ -8,17 +8,23 @@ from help_functions import *
 
 df_dir_experiments = os.path.join(os.getcwd(), 'data_frame_machineLearning.json')
 df_experiments = pd.DataFrame(pd.read_json(df_dir_experiments))
+Adf_winners = df_experiments[df_experiments['winner'] == True]
 
 df_dir_contacts = os.path.join(os.getcwd(), 'contacts_machineLearning.json')
 df_contacts = pd.read_json(df_dir_contacts).dropna()
 
 
 def carrier_vs_path_length_linear_regression() -> None:
+    """
+    Is the number of carriers (ants attached to the load) linearly correlated to the path length of successful
+    trajectories?
+    :return:
+    """
     title = 'Linear Regression for successful trials'
     xlabel, ylabel = 'average Carrier Number', 'path length/minimal path length[]'
 
-    x = np.array(df_experiments[xlabel]).reshape(-1, 1)
-    y = np.array(df_experiments[ylabel])
+    x = np.array(df_winners[xlabel]).reshape(-1, 1)
+    y = np.array(df_winners[ylabel])
     x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=40)
     model = LinearRegression()
     model.fit(x_train, y_train)
@@ -28,7 +34,10 @@ def carrier_vs_path_length_linear_regression() -> None:
 
 
 def velocity_vs_path_length_linear_regression() -> None:
-    df_winners = df_experiments[df_experiments['winner'] == True]
+    """
+    Is the velocity of carrying linearly correlated to the path length of successful trajectories?
+    :return:
+    """
     title = 'Linear Regression for successful trials'
     xlabel, ylabel = 'velocity', 'path length/minimal path length[]'
 
@@ -43,6 +52,10 @@ def velocity_vs_path_length_linear_regression() -> None:
 
 
 def carrier_vs_successful_trials_linear_regression() -> None:
+    """
+    Is the number of carriers (ants attached to the load) linearly correlated to chance of completing the maze?
+    :return:
+    """
     title = 'LogisticRegression for successful trials'
     xlabel, ylabel = 'average Carrier Number', 'winner'
 
@@ -58,7 +71,8 @@ def carrier_vs_successful_trials_linear_regression() -> None:
 
 def torque_vs_rotation_at_contact() -> None:
     """
-    Contacts: Does the rotation match the torque?
+    At points, where the load bumps into a wall (so called 'contacts'): Does the rotation of the load match the applied
+    torque?
     :return:
     """
     title = 'Linear Regression for torque vs. angular speed'

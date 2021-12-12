@@ -12,7 +12,7 @@ def plot_model(model, x, y, xlabel, ylabel, title):
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.title(title)
-    return
+    plt.show()
 
 
 def remove_outliers(x, y):
