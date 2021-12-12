@@ -8,7 +8,7 @@ from help_functions import *
 
 df_dir_experiments = os.path.join(os.getcwd(), 'data_frame_machineLearning.json')
 df_experiments = pd.DataFrame(pd.read_json(df_dir_experiments))
-Adf_winners = df_experiments[df_experiments['winner'] == True]
+df_winners = df_experiments[df_experiments['winner'] == True]
 
 df_dir_contacts = os.path.join(os.getcwd(), 'contacts_machineLearning.json')
 df_contacts = pd.read_json(df_dir_contacts).dropna()
