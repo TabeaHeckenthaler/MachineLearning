@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+from sklearn.neighbors import LocalOutlierFactor
+
 
 def plot_model(model, x, y, xlabel, ylabel, title):
     x1, x2 = min(x)[0], max(x)[0]  # 0, size-1
@@ -13,7 +16,6 @@ def plot_model(model, x, y, xlabel, ylabel, title):
 
 
 def remove_outliers(x, y):
-    from sklearn.neighbors import LocalOutlierFactor
     lof = LocalOutlierFactor(contamination=0.5, n_neighbors=20)
     yhat = lof.fit_predict(x)
 

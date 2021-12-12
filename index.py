@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression, LogisticRegression
-import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 import os
 from help_functions import *
@@ -10,7 +9,7 @@ from help_functions import *
 df_dir_experiments = os.path.join(os.getcwd(), 'data_frame_machineLearning.json')
 df_experiments = pd.DataFrame(pd.read_json(df_dir_experiments))
 
-df_dir_contacts = os.getcwd() + '\\contacts_machineLearning.json'
+df_dir_contacts = os.path.join(os.getcwd(), 'contacts_machineLearning.json')
 df_contacts = pd.read_json(df_dir_contacts).dropna()
 
 
@@ -78,7 +77,6 @@ def torque_vs_rotation_at_contact():
     print('train coefficient of determination:', model.score(x_train, y_train))
     print('test coefficient of determination:', model.score(x_test, y_test))
     plot_model(model, x, y, xlabel, ylabel, title)
-    plt.show()
 
 
 if __name__ == '__main__':
