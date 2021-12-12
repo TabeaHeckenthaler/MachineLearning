@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from os import getcwd
 
 
-df_dir = getcwd() + '\\data_frame_machineLearning.json'
+df_dir = os.path.join(getcwd(), 'data_frame_machineLearning.json')
 df = pd.DataFrame(pd.read_json(df_dir))
 df_winners = df[df['winner'] == True]
 
@@ -25,7 +25,7 @@ def plot_model(model, x, y, xlabel, ylabel, title):
 
 
 # Carrier Number vs. Path Length Linear Regression Model
-def func1():
+def carrier_vs_path_length_linear_regression():
     title = 'Linear Regression for successful trials'
     xlabel, ylabel = 'average Carrier Number', 'path length/minimal path length[]'
 
@@ -41,7 +41,7 @@ def func1():
 
 
 # Velocity vs. Path Length Linear Regression Model
-def func2():
+def velocity_vs_path_length_linear_regression():
     title = 'Linear Regression for successful trials'
     xlabel, ylabel = 'velocity', 'path length/minimal path length[]'
 
@@ -57,7 +57,7 @@ def func2():
 
 
 # Carrier numbers vs. successful trials  Regression Model
-def func3():
+def carrier_vs_successful_trials_linear_regression():
     title = 'LogisticRegression for successful trials'
     xlabel, ylabel = 'average Carrier Number', 'winner'
 
@@ -84,7 +84,7 @@ def remove_outliers(x, y):
 
 
 # Contacts
-def func4():
+def torque_vs_rotation_at_contact():
     df_dir = getcwd() + '\\contacts_machineLearning.json'
     df_contacts = pd.read_json(df_dir).dropna()
 
@@ -102,5 +102,4 @@ def func4():
     print('test coefficient of determination:', model.score(x_test, y_test))
     plot_model(model, x, y, xlabel, ylabel, title)
     plt.show()
-    k = 1
 
